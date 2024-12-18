@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tareas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tareas</h1>
+        <form action="/agregar" method="POST">
+            <input type="text" name="tarea" placeholder="Escribe una tarea" required>
+            <button type="submit">Agregar</button>
+        </form>
+
+        <ul>
+            {% for tarea in tareas %}
+            <li>
+                {{ tarea }}
+                <a href="{{ url_for('eliminar', tarea_id=loop.index0) }}" class="eliminar">Eliminar</a>
+            </li>
+            {% else %}
+            <li>No hay tareas por el momento.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+    </script>
+</body>
+</html>
